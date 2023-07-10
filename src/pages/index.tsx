@@ -23,8 +23,8 @@ const Home: NextPage = () => {
     const [currentAccount, setCurrentAccount] = useState<string | undefined>()
     const [chainId, setChainId] = useState<number | undefined>()
     const [chainname, setChainName] = useState<string | undefined>()
-    const ERC20address = '0x5eb3Bc0a489C5A8288765d2336659EbCA68FCd00';
-    const NFTaddress = '0x36C02dA8a0983159322a80FFE9F24b1acfF8B570';
+    const ERC20address = '0xb7278A61aa25c888815aFC32Ad3cC52fF24fE575';
+    const NFTaddress = '0xCD8a1C3ba11CF5ECfa6267617243239504a98d90';
 
     useEffect(() => {
         if(!currentAccount || !ethers.utils.isAddress(currentAccount)) return
@@ -100,7 +100,7 @@ const Home: NextPage = () => {
                 
             </Box>
             <Box  mb={0} p={4} w='100%' borderWidth="1px" borderRadius="lg">
-                <Heading my={4}  fontSize='xl'>Buy NFTs</Heading>
+                <Heading my={4}  fontSize='xl'>Transfer NFTs</Heading>
                 <a> Price : 20 MT</a>
                 <p> </p>
                 <TransferERC721
