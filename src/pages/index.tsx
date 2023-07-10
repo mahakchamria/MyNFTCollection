@@ -23,8 +23,8 @@ const Home: NextPage = () => {
     const [currentAccount, setCurrentAccount] = useState<string | undefined>()
     const [chainId, setChainId] = useState<number | undefined>()
     const [chainname, setChainName] = useState<string | undefined>()
-    const ERC20address = '0xb7278A61aa25c888815aFC32Ad3cC52fF24fE575';
-    const NFTaddress = '0xCD8a1C3ba11CF5ECfa6267617243239504a98d90';
+    const ERC20address = '0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3';
+    const NFTaddress = '0x7969c5eD335650692Bc04293B07F5BF2e7A673C0';
 
     useEffect(() => {
         if(!currentAccount || !ethers.utils.isAddress(currentAccount)) return
@@ -93,6 +93,7 @@ const Home: NextPage = () => {
                     addressContract={NFTaddress}
                     currentAccount={currentAccount}
                 />
+                <a> Minting a NFT takes 1 Eth</a>
                 <MintERC721 
                     addressContract = {NFTaddress}
                     currentAccount={currentAccount}
@@ -101,7 +102,7 @@ const Home: NextPage = () => {
             </Box>
             <Box  mb={0} p={4} w='100%' borderWidth="1px" borderRadius="lg">
                 <Heading my={4}  fontSize='xl'>Transfer NFTs</Heading>
-                <a> Price : 20 MT</a>
+                <a> 20 MT tokens should be approved by the buyer address to the address contract</a>
                 <p> </p>
                 <TransferERC721
                     addressContract={NFTaddress}
