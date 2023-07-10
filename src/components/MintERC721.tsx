@@ -16,6 +16,8 @@ export default function ReadERC721(props:Props){
   const addressContract = props.addressContract
   const currentAccount = props.currentAccount
   const [contractError, setContractError] = useState('');
+  const [tokenId, setTokenId] = useState<number>(0);
+  const [transactionHash, setTransactionHash] = useState<string>('');
 
   async function Mint(event:React.FormEvent) {
     event.preventDefault()
@@ -27,16 +29,27 @@ export default function ReadERC721(props:Props){
     const mintingPrice = ethers.utils.parseEther('1');
     const bal = await provider.getBalance(signer.getAddress());
 
-    if(bal<mintingPrice){
-      throw new Error('Insufficient ETH balance');
+    try {
+      const overrides = {
+        value: mintingPrice,
+      };
+
+      const transaction = await erc721.mint(overrides);
+      const receipt = await transaction.wait();
+      const newTokenId = receipt.events?.find((event: any) => event.event === 'Transfer')?.args?.tokenId;
+
+      setTokenId(newTokenId);
+      setTransactionHash(receipt.transactionHash);
+    } catch (error) {
+      console.error('Error minting:', error);
     }
     
-    erc721.mint({value: mintingPrice})
-      .then((tr: TransactionResponse) => {
-        console.log(`TransactionResponse TX hash: ${tr.hash}`)
-        tr.wait().then((receipt:TransactionReceipt)=>{console.log("transfer receipt",receipt)})
-      })
-      .catch((e:Error)=>console.log(e));
+    // erc721.mint({value: mintingPrice})
+    //   .then((tr: TransactionResponse) => {
+    //     console.log(`TransactionResponse TX hash: ${tr.hash}`)
+    //     tr.wait().then((receipt:TransactionReceipt)=>{console.log("transfer receipt",receipt)})
+    //   })
+    //   .catch((e:Error)=>console.log(e));
   }
 
   return (
@@ -45,6 +58,12 @@ export default function ReadERC721(props:Props){
       {/* <Button type="submit" isDisabled={currentAccount !== '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'}>Mint</Button>  */}
       <Button type="submit" isDisabled={!currentAccount}>Mint</Button>
       {contractError && <p>Error: {contractError}</p>}
+      {tokenId !== 0 && (
+        <div>
+          <p>Minted Token ID: {tokenId}</p>
+          <p>Transaction Hash: {transactionHash}</p>
+        </div>
+      )}
     </FormControl>
     </form>
   )

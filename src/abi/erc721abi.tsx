@@ -1,7 +1,7 @@
 export const ERC721ABI = [
     //methods
     "function transferNFT(address _to,uint256 tokenId) public",
-    "function mint() external payable",
+    "function mint() external payable returns(uint256)",
     "function tokenURI(uint256 tokenId) override public pure returns (string memory)",
     "function claimReward(uint256 tokenId) public returns(uint256)",
     
