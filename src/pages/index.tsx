@@ -23,8 +23,8 @@ const Home: NextPage = () => {
     const [currentAccount, setCurrentAccount] = useState<string | undefined>()
     const [chainId, setChainId] = useState<number | undefined>()
     const [chainname, setChainName] = useState<string | undefined>()
-    const ERC20address = '0xCfA59D8E9AE0408C5350E3f84CB027CAe1E2536b';
-    const NFTaddress = '0xCCc4EFA14ffA7C34148CDBA01831085852aCc623';
+    const ERC20address = '0x00Be5b9409CE680c95BcBd5aD156654BBA219c16';
+    const NFTaddress = '0xF1f5a937912C1C3A406530E8FF12b1af1f4005D2';
 
     useEffect(() => {
         if(!currentAccount || !ethers.utils.isAddress(currentAccount)) return
