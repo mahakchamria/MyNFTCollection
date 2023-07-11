@@ -43,12 +43,12 @@ export default function ReadERC721(props:Props){
         <br></br>
         <Button type="submit" isDisabled ={!currentAccount}>Claim</Button>
         
-        {reward !== '' ?(
+        {/* {reward !== '' ?(
           <Text my = {4}>{reward} MT tokens claimed successfully</Text> 
         ): error!== ''? (
           <Text></Text>
         ) : null
-        }
+        } */}
     </FormControl>
     </form>
   )
