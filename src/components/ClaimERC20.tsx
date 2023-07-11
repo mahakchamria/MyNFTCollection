@@ -15,7 +15,7 @@ export default function ReadERC721(props:Props){
   const addressContract = props.addressContract
   const currentAccount = props.currentAccount
   const [tokenId, setTokenId] = useState<string>('')
-  const[reward, setReward] = useState<number>(0)
+  const[reward, setReward] = useState<string>('')
   const[error, setError] = useState<string>('');
 
   async function ClaimRewards(event:React.FormEvent) {
@@ -26,9 +26,8 @@ export default function ReadERC721(props:Props){
     const erc721:Contract = new ethers.Contract(addressContract, abi, signer)
 
     erc721.claimReward(tokenId)
-    .then((result: ethers.BigNumber)=>{
-      const claimQty = result.toNumber();
-        setReward(claimQty);
+    .then((result: string)=>{
+        setReward(result);
     })
     .catch((err: Error) => console.log(err));
   }
@@ -45,7 +44,7 @@ export default function ReadERC721(props:Props){
         <br></br>
         <Button type="submit" isDisabled ={!currentAccount}>Claim</Button>
         
-        {reward !== 0 ?(
+        {reward !== '' ?(
           <Text my = {4}>{reward} MT tokens claimed successfully</Text> 
         ): error!== ''? (
           <Text></Text>
