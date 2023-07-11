@@ -93,7 +93,7 @@ const Home: NextPage = () => {
                     addressContract={NFTaddress}
                     currentAccount={currentAccount}
                 />
-                <a> Minting a NFT takes 0.05 Sepolia Eth</a>
+                <a> <b>Minting a NFT takes 0.05 Sepolia Eth</b></a>
                 <MintERC721 
                     addressContract = {NFTaddress}
                     currentAccount={currentAccount}
@@ -102,7 +102,7 @@ const Home: NextPage = () => {
             </Box>
             <Box  mb={0} p={4} w='100%' borderWidth="1px" borderRadius="lg">
                 <Heading my={4}  fontSize='xl'>Transfer NFTs</Heading>
-                <a> 20 MT tokens should be approved by the buyer address to the address contract</a>
+                <a> 20 MT tokens should be approved by the buyer to the address contract</a>
                 <p> </p>
                 <TransferERC721
                     addressContract={NFTaddress}
