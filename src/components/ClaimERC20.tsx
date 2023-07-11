@@ -27,7 +27,6 @@ export default function ReadERC721(props:Props){
 
     erc721.claimReward(tokenId)
     .then((result: string)=>{
-        setReward(result);
     })
     .catch((err: Error) => console.log(err));
   }
