@@ -93,7 +93,7 @@ const Home: NextPage = () => {
                     addressContract={NFTaddress}
                     currentAccount={currentAccount}
                 />
-                <a> Minting a NFT takes 1 Eth</a>
+                <a> Minting a NFT takes 0.05 Sepolia Eth</a>
                 <MintERC721 
                     addressContract = {NFTaddress}
                     currentAccount={currentAccount}

@@ -26,15 +26,15 @@ export default function ReadERC721(props:Props){
     const signer = provider.getSigner()
     const erc721:Contract = new ethers.Contract(addressContract, abi, signer)
 
-    const mintingPrice = ethers.utils.parseEther('0.05');
-    const bal = await provider.getBalance(signer.getAddress());
+    const mintingPrice = ethers.utils.parseUnits('0.05', 18);
 
-    try {
-      const overrides = {
-        value: mintingPrice,
-      };
+    try{
+      const userBalance = await provider.getBalance(signer.getAddress());
+      if (userBalance.lt(mintingPrice)) {
+        throw new Error('Insufficient ETH balance');
+      }
 
-      const transaction = await erc721.mint(overrides);
+      const transaction = await erc721.mint({ value: mintingPrice });
       const receipt = await transaction.wait();
       const newTokenId = receipt.events?.find((event: any) => event.event === 'Transfer')?.args?.tokenId;
 
