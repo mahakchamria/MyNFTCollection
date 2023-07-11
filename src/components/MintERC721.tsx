@@ -26,7 +26,7 @@ export default function ReadERC721(props:Props){
     const signer = provider.getSigner()
     const erc721:Contract = new ethers.Contract(addressContract, abi, signer)
 
-    const mintingPrice = ethers.utils.parseEther('1');
+    const mintingPrice = ethers.utils.parseEther('0.05');
     const bal = await provider.getBalance(signer.getAddress());
 
     try {
