@@ -13,6 +13,7 @@ import MintERC721 from "components/MintERC721"
 import TransferERC721 from "components/TransferERC721"
 import TokenURI from "components/TokenURI"
 import ClaimERC20 from "components/ClaimERC20"
+import Withdraw from "components/Withdraw"
 
 
 
@@ -144,7 +145,12 @@ const Home: NextPage = () => {
                     currentAccount={currentAccount}
                 />
             </Box>
-            
+            <Box  mb={0} p={4} w='100%' borderWidth="1px" borderRadius="lg">
+                <Withdraw
+                    addressContract={NFTaddress}
+                    currentAccount={currentAccount}
+                />
+            </Box>
         </VStack>
         </>
     )

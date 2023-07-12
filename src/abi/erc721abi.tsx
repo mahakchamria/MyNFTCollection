@@ -4,6 +4,7 @@ export const ERC721ABI = [
     "function mint() external payable returns(uint256)",
     "function tokenURI(uint256 tokenId) override public pure returns (string memory)",
     "function claimReward(uint256 tokenId) public returns(uint256)",
+    "function withdrawBalance() external",
     
     
     "function balanceOf(address _owner) external view returns (uint256)",
