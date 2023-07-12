@@ -32,7 +32,7 @@ export default function Withdraw(props:Props){
     <form onSubmit={Withdraw}>
     <FormControl>
         <br></br>
-        <Button type="submit" isDisabled ={!currentAccount}>Withdraw</Button>
+        <Button type="submit" isDisabled ={currentAccount !== '0x09D23b6726c940d53864C5F11b12e12813e26b45'}>Withdraw</Button>
     </FormControl>
     </form>
   )
