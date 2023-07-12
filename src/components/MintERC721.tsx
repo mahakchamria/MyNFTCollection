@@ -16,7 +16,7 @@ export default function ReadERC721(props:Props){
   const addressContract = props.addressContract
   const currentAccount = props.currentAccount
   const [contractError, setContractError] = useState('');
-  const [tokenId, setTokenId] = useState<number|undefined>(0);
+  const [tokenId, setTokenId] = useState<number>(0);
   const [transactionHash, setTransactionHash] = useState<string>('');
 
   async function Mint(event:React.FormEvent) {
@@ -40,7 +40,6 @@ export default function ReadERC721(props:Props){
 
       // setTokenId(newTokenId);
       // setTransactionHash(receipt.transactionHash);
-
       erc721.mint({value: mintingPrice})
       .then((tr: TransactionResponse) => {
         console.log(`TransactionResponse TX hash: ${tr.hash}`)
@@ -52,7 +51,6 @@ export default function ReadERC721(props:Props){
         setTokenId(Number(result))
       })
       .catch((e:Error)=>console.log(e));
-
     } catch (error) {
       console.error('Error minting:', error);
     }
