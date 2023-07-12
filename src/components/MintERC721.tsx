@@ -34,22 +34,30 @@ export default function ReadERC721(props:Props){
         throw new Error('Insufficient ETH balance');
       }
 
-      const transaction = await erc721.mint({ value: mintingPrice });
-      const receipt = await transaction.wait();
-      const newTokenId = receipt.events?.find((event: any) => event.event === 'Transfer')?.args?.tokenId;
+      // const transaction = await erc721.mint({ value: mintingPrice });
+      // const receipt = await transaction.wait();
+      // const newTokenId = receipt.events?.find((event: any) => event.event === 'Transfer')?.args?.tokenId;
 
-      setTokenId(newTokenId);
-      setTransactionHash(receipt.transactionHash);
+      // setTokenId(newTokenId);
+      // setTransactionHash(receipt.transactionHash);
+
+      erc721.mint({value: mintingPrice})
+      .then((tr: TransactionResponse) => {
+        console.log(`TransactionResponse TX hash: ${tr.hash}`)
+        tr.wait().then((receipt:TransactionReceipt)=>{console.log("transfer receipt",receipt)})
+        
+      setTransactionHash(tr.hash);
+      },
+      (result: string) => {
+        setTokenId(Number(result))
+      })
+      .catch((e:Error)=>console.log(e));
+      
     } catch (error) {
       console.error('Error minting:', error);
     }
     
-    // erc721.mint({value: mintingPrice})
-    //   .then((tr: TransactionResponse) => {
-    //     console.log(`TransactionResponse TX hash: ${tr.hash}`)
-    //     tr.wait().then((receipt:TransactionReceipt)=>{console.log("transfer receipt",receipt)})
-    //   })
-    //   .catch((e:Error)=>console.log(e));
+    
   }
 
   return (
