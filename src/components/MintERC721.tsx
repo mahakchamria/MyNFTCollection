@@ -16,7 +16,7 @@ export default function ReadERC721(props:Props){
   const addressContract = props.addressContract
   const currentAccount = props.currentAccount
   const [contractError, setContractError] = useState('');
-  const [tokenId, setTokenId] = useState<number|undefined>(undefined);
+  const [tokenId, setTokenId] = useState<number|undefined>(0);
   const [transactionHash, setTransactionHash] = useState<string>('');
 
   async function Mint(event:React.FormEvent) {
@@ -67,7 +67,7 @@ export default function ReadERC721(props:Props){
       <Button type="submit" isDisabled={!currentAccount}>Mint</Button>
       {contractError && <p>Error: {contractError}</p>}
       <br></br>
-      {tokenId !== undefined && (
+      {tokenId !== 0 && (
         <div>
           <p>Minted Token ID: {tokenId}</p>
           <p>Transaction Hash: {transactionHash}</p>
