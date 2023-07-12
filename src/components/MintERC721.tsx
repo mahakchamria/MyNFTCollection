@@ -67,7 +67,7 @@ export default function ReadERC721(props:Props){
       <Button type="submit" isDisabled={!currentAccount}>Mint</Button>
       {contractError && <p>Error: {contractError}</p>}
       <br></br>
-      {tokenId !== 0 && (
+      {tokenId !== undefined && (
         <div>
           <p>Minted Token ID: {tokenId}</p>
           <p>Transaction Hash: {transactionHash}</p>
