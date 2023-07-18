@@ -8,8 +8,8 @@ passport.use(
   new SamlStrategy(
     {
         entryPoint: 'https://test110.onelogin.com/trust/saml2/http-post/sso/8c949cda-a8ec-486d-8472-0808f3c38c0d',
-        issuer: 'https://my-nft-collection-lime.vercel.app', // This should be the base URL of your Node.js app
-        callbackUrl: 'https://my-nft-collection-lime.vercel.app/api/saml/callback', // This should match the ACS URL configured in OneLogin
+        issuer: 'https://my-nft-collection-lime.vercel.app',
+        callbackUrl: 'https://my-nft-collection-lime.vercel.app/saml/callback', 
         cert: `-----BEGIN CERTIFICATE-----
         MIID1TCCAr2gAwIBAgIUekjvvAskmDDl7ww1A3e525U0740wDQYJKoZIhvcNAQEF
         BQAwQzEOMAwGA1UECgwFWmVldmUxFTATBgNVBAsMDE9uZUxvZ2luIElkUDEaMBgG
