@@ -9,7 +9,7 @@ passport.use(
     {
         entryPoint: 'https://test110.onelogin.com/trust/saml2/http-post/sso/8c949cda-a8ec-486d-8472-0808f3c38c0d',
         issuer: 'https://my-nft-collection-lime.vercel.app', // This should be the base URL of your Node.js app
-        callbackUrl: 'https://my-nft-collection-lime.vercel.app/auth/saml/callback', // This should match the ACS URL configured in OneLogin
+        callbackUrl: 'https://my-nft-collection-lime.vercel.app/api/saml/callback', // This should match the ACS URL configured in OneLogin
         cert: `-----BEGIN CERTIFICATE-----
         MIID1TCCAr2gAwIBAgIUekjvvAskmDDl7ww1A3e525U0740wDQYJKoZIhvcNAQEF
         BQAwQzEOMAwGA1UECgwFWmVldmUxFTATBgNVBAsMDE9uZUxvZ2luIElkUDEaMBgG
@@ -52,16 +52,37 @@ passport.deserializeUser(function (user, done) {
 });
 
 // Login endpoint - redirects the user to the SAML Identity Provider for authentication
-router.get("/login", passport.authenticate("saml"));
+// router.get("/login", passport.authenticate("saml"));
+
+// // Callback endpoint - handle the SAML response from the Identity Provider
+// router.post(
+//   "/callback",
+//   passport.authenticate("saml", { failureRedirect: "/login" }),
+//   function (req, res) {
+//     // Successful authentication, redirect or handle as needed.
+//     res.redirect("/");
+//   }
+// );
+
+// module.exports = router;
+
+// Login endpoint - redirects the user to the SAML Identity Provider for authentication
+export default (req, res) => {
+  passport.authenticate("saml")(req, res);
+};
 
 // Callback endpoint - handle the SAML response from the Identity Provider
-router.post(
-  "/callback",
-  passport.authenticate("saml", { failureRedirect: "/login" }),
-  function (req, res) {
+export function callback(req, res) {
+  passport.authenticate("saml", { failureRedirect: "/login" }, function (
+    err,
+    user
+  ) {
+    if (err) {
+      // Handle error
+      res.redirect("/login");
+      return;
+    }
     // Successful authentication, redirect or handle as needed.
     res.redirect("/");
-  }
-);
-
-module.exports = router;
+  })(req, res);
+}
