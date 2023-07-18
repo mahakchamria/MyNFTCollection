@@ -14,6 +14,7 @@ import TransferERC721 from "components/TransferERC721"
 import TokenURI from "components/TokenURI"
 import ClaimERC20 from "components/ClaimERC20"
 import Withdraw from "components/Withdraw"
+import LoginButton from '@/components/LoginButton'
 
 
 
@@ -68,7 +69,8 @@ const Home: NextPage = () => {
             <title>My DAPP</title>
         </Head>
 
-        <Heading as="h3"  my={4}>NFT Project</Heading>          
+        <Heading as="h3"  my={4}>NFT Project</Heading>  
+        <LoginButton />        
         <VStack>
             <Box w='100%' my={4}>
             {currentAccount  
