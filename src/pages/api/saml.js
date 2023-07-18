@@ -52,37 +52,16 @@ passport.deserializeUser(function (user, done) {
 });
 
 // Login endpoint - redirects the user to the SAML Identity Provider for authentication
-// router.get("/login", passport.authenticate("saml"));
-
-// // Callback endpoint - handle the SAML response from the Identity Provider
-// router.post(
-//   "/callback",
-//   passport.authenticate("saml", { failureRedirect: "/login" }),
-//   function (req, res) {
-//     // Successful authentication, redirect or handle as needed.
-//     res.redirect("/");
-//   }
-// );
-
-// module.exports = router;
-
-// Login endpoint - redirects the user to the SAML Identity Provider for authentication
-export default (req, res) => {
-  passport.authenticate("saml")(req, res);
-};
+router.get("/login", passport.authenticate("saml"));
 
 // Callback endpoint - handle the SAML response from the Identity Provider
-export function callback(req, res) {
-  passport.authenticate("saml", { failureRedirect: "/login" }, function (
-    err,
-    user
-  ) {
-    if (err) {
-      // Handle error
-      res.redirect("/login");
-      return;
-    }
+router.post(
+  "/callback",
+  passport.authenticate("saml", { failureRedirect: "/login" }),
+  function (req, res) {
     // Successful authentication, redirect or handle as needed.
     res.redirect("/");
-  })(req, res);
-}
+  }
+);
+
+module.exports = router;

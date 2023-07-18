@@ -3,7 +3,7 @@ import React from 'react';
 const LoginButton = () => {
   const handleLogin = () => {
     // Redirect the user to the SAML login endpoint
-    window.location.href = '/api/saml/login';
+    window.location.href = '/saml/login';
   };
 
   return (

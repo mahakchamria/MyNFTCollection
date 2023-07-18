@@ -12,8 +12,7 @@ app.use(passport.session());
 // Set up your other API routes here (if any)
 
 // Include the SAML authentication routes
-app.get("/api/saml/login", samlRoutes);
-app.post("/api/saml/callback", samlRoutes.callback);
+app.use("/auth/saml", samlRouter);
 
 // Export the Express app
 module.exports = app;
