@@ -5,7 +5,7 @@
 
 Rewarding Canvas is an innovative NFT minting platform that not only allows users to create and trade unique NFTs but also rewards them with custom ERC20 tokens for holding these NFTs. These tokens can be later reimbursed, providing an additional incentive for NFT ownership.
 
-View the deployed website  - 
+View the deployed website  - https://my-nft-collection-lime.vercel.app/
 
 ## Features
 
